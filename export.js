@@ -77,7 +77,9 @@ Avatar = {
 
     if (user) {
       svc = getService(user);
-      if (svc === 'twitter') {
+      if (user.profile && user.profile.avatar) {
+        url = user.profile.avatar;
+      } else if (svc === 'twitter') {
         // use larger image (200x200 is smallest custom option)
         url = user.services.twitter.profile_image_url.replace('_normal.', '_200x200.');
       }
