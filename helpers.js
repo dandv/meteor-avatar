@@ -36,10 +36,19 @@ getGravatarUrl = function (user, defaultUrl) {
   return Gravatar.imageUrl(emailOrHash, options);
 };
 
+
+//allows for accessing deeper fields in the user object similar to how mongo does it e.g user.profile.email_hash
+//see http://stackoverflow.com/a/8052100/2621563
+getDescendantProp = function(obj, desc) {
+    var arr = desc.split(".");
+    while(arr.length && (obj = obj[arr.shift()]));
+    return obj;
+}
+
 // Get the user's email address or (if the emailHashProperty is defined) hash
 getEmailOrHash = function (user) {
   var emailOrHash;
-  if (user && Avatar.options.emailHashProperty && user[Avatar.options.emailHashProperty]) {
+  if (user && Avatar.options.emailHashProperty && getDescendantProp(user,Avatar.options.emailHashProperty) {
     emailOrHash = user[Avatar.options.emailHashProperty];
   }
   else if (user && user.emails) {
