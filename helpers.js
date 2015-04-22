@@ -42,14 +42,15 @@ getGravatarUrl = function (user, defaultUrl) {
 getDescendantProp = function(obj, desc) {
     var arr = desc.split(".");
     while(arr.length && (obj = obj[arr.shift()]));
+    //console.log(obj)
     return obj;
 }
 
 // Get the user's email address or (if the emailHashProperty is defined) hash
 getEmailOrHash = function (user) {
   var emailOrHash;
-  if (user && Avatar.options.emailHashProperty && getDescendantProp(user,Avatar.options.emailHashProperty) {
-    emailOrHash = user[Avatar.options.emailHashProperty];
+  if (user && Avatar.options.emailHashProperty && getDescendantProp(user,Avatar.options.emailHashProperty)){
+    emailOrHash = getDescendantProp(user,Avatar.options.emailHashProperty);
   }
   else if (user && user.emails) {
     emailOrHash = user.emails[0].address; // TODO: try all emails
