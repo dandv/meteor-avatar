@@ -26,7 +26,11 @@ Avatar = {
 
     // This property on the user object will be used for retrieving gravatars
     // (useful when user emails are not published).
-    emailHashProperty: ''
+    emailHashProperty: '',
+
+    // Field in user.profile to find custom initials for user
+    initialsFirst: '',
+    initialsLast: ''
   },
 
   // Get the initials of the user
@@ -35,8 +39,13 @@ Avatar = {
     var initials = '';
     var name = '';
     var parts = [];
-
-    if (user && user.profile && user.profile.firstName) {
+    var firstField = Avatar.options.initialsFirst;
+    var lastField = Avatar.options.initialsLast;
+    if (user && user.profile && firstField && lastField) {
+      initials = user.profile[firstField].charAt(0).toUpperCase();
+      initials += user.profile[lastField].charAt(0).toUpperCase();
+    }
+    else if (user && user.profile && user.profile.firstName) {
       initials = user.profile.firstName.charAt(0).toUpperCase();
 
       if (user.profile.lastName) {
