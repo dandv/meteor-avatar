@@ -1,8 +1,11 @@
 ![logo](https://raw.githubusercontent.com/bengott/images/master/avatar-logo.png)
 ================================================================================
 
-Consolidated Avatar Template Package for Meteor
+Consolidated Avatar Template Package for Meteor -- Forked from Bengott
 -----------------------------------------------
+
+Some features I added - Setting custom Initials Locations & having deeply nested locations for Gravatar Email hashes
+Will most probably add functionality for setting avatar URLS soonish to enable custom uploaded profiles
 
 ANNOUNCEMENT
 ------------
