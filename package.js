@@ -1,7 +1,7 @@
 Package.describe({
-  name: "ryanswart:avatar",
+  name: "ryanswrt:avatar",
   summary: "Consolidated user avatar template (twitter, facebook, gravatar, etc.) - Forked from bengott",
-  version: "0.7.7",
+  version: "0.7.8",
   git: "https://github.com/TheAncientGoat/meteor-avatar"
 });
 
