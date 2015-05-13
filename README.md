@@ -1,8 +1,11 @@
 ![logo](https://raw.githubusercontent.com/bengott/images/master/avatar-logo.png)
 ================================================================================
 
-Consolidated Avatar Template Package for Meteor
+Consolidated Avatar Template Package for Meteor -- Forked from Bengott
 -----------------------------------------------
+
+Some features I added - Setting custom Initials Locations & having deeply nested locations for Gravatar Email hashes
+Pulled custom avatar code from cwohlman
 
 ANNOUNCEMENT
 ------------
@@ -56,6 +59,9 @@ The package exports a global `Avatar` object which has a property named `options
   - `defaultImageUrl`: This will replace the included package default image URL ("packages/bengott_avatar/default.png"). It can be a relative path (e.g. "images/defaultAvatar.png").
   - `gravatarDefault`: Gravatar default option to use (overrides defaultImageUrl option and included package default image URL). Options are available at: https://secure.gravatar.com/site/implement/images/#default-image
   - `emailHashProperty`: This property on the user object will be used for retrieving gravatars (useful when user emails are not published)
+  - `initialsFirst`: Property where the first letter of a user's initials are stored
+  - `initialsLast`: Property where the last letter of a user's initials are stored
+  - `profilePictureProperty`: Propert where URL of custom avatar image is stored
 
 Example usage:
 - To show initials when no avatar image can be found via linked services:

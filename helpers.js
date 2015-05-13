@@ -1,7 +1,9 @@
 // Get the account service to use for the user's avatar
 // Priority: Twitter > Facebook > Google > GitHub > Instagram
 getService = function (user) {
-  if      (user && user.services && user.services.twitter)   { return 'twitter'; }
+  var profileProp = Avatar.options.profilePictureProperty;
+  if      (profileProp && user && user.profile && user.profile[profileProp]) { return 'profile'; }
+  else if (user && user.services && user.services.twitter)   { return 'twitter'; }
   else if (user && user.services && user.services.facebook)  { return 'facebook'; }
   else if (user && user.services && user.services.google)    { return 'google'; }
   else if (user && user.services && user.services.github)    { return 'github'; }
@@ -36,11 +38,21 @@ getGravatarUrl = function (user, defaultUrl) {
   return Gravatar.imageUrl(emailOrHash, options);
 };
 
+
+//allows for accessing deeper fields in the user object similar to how mongo does it e.g user.profile.email_hash
+//see http://stackoverflow.com/a/8052100/2621563
+getDescendantProp = function(obj, desc) {
+    var arr = desc.split(".");
+    while(arr.length && (obj = obj[arr.shift()]));
+    //console.log(obj)
+    return obj;
+}
+
 // Get the user's email address or (if the emailHashProperty is defined) hash
 getEmailOrHash = function (user) {
   var emailOrHash;
-  if (user && Avatar.options.emailHashProperty && user[Avatar.options.emailHashProperty]) {
-    emailOrHash = user[Avatar.options.emailHashProperty];
+  if (user && Avatar.options.emailHashProperty && getDescendantProp(user,Avatar.options.emailHashProperty)){
+    emailOrHash = getDescendantProp(user,Avatar.options.emailHashProperty);
   }
   else if (user && user.emails) {
     emailOrHash = user.emails[0].address; // TODO: try all emails
