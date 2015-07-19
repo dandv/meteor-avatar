@@ -1,0 +1,13 @@
+Hey Carl,
+
+Quick heads up, work on avatar has moved to https://github.com/meteor-utilities/avatar/
+
+Maybe you want to join forces? In any case, if you could hide [this package](https://atmospherejs.com/csl/avatar) from Atmosphere searches, that would help users find the most current one.
+
+    meteor admin set-unmigrated csl:avatar
+
+This will leave the package installable by dependent apps and packages.
+
+Thanks,
+Dan
+[Atmosphere moderator](https://atmosphere.com/dandv)
